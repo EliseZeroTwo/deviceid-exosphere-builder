@@ -19,18 +19,18 @@ Dockerized tool to build a custom Exosphere binary that spoofs the DeviceID. Thi
 - Latest [Atmosphere](https://github.com/Atmosphere-NX/Atmosphere/releases/)
 
 ### Steps
-1. Open the EMMC from *Console A* or its backup with NxNandManager, using *Console A* BIS keys
-1. Write down the *DeviceID*, without the initial `NX` and the `-0` (or whatever there is) at the end. For instance, if it says: `NX1122334455667788-0`, your device would be: `1122334455667788`
-1. Dump and decrypt `PRODINFO` and `PRODINFOF` partitions from *Console A*
-1. Close NxNandManager
+1. Open the EMMC from *Console A* or its backup with NxNandManager, using *Console A* BIS keys.
+1. Write down the *DeviceID*, without the initial `NX` and the `-0` (or whatever there is) at the end. For instance, if it says: `NX1122334455667788-0`, your device would be: `1122334455667788`.
+1. Dump and decrypt `PRODINFO` and `PRODINFOF` partitions from *Console A*.
+1. Close NxNandManager.
 1. Open the EMMC from *Console B* with NxNandManager, using *Console B* BIS keys. It may say that it has *BAD CRYPTO*. This is expected on a nuked EMMC.
-1. Restore the decrypted `PRODINFO` and `PRODINFO` partitions from Console A into Console B
-1. Close NxNandManager
+1. Restore the decrypted `PRODINFO` and `PRODINFO` partitions from Console A into Console B.
+1. Close NxNandManager.
 1. Follow [this guide](https://switch.homebrew.guide/usingcfw/manualchoiupgrade.html) to recreate the rest of the EMMC partitions, `BOOT0` and `BOOT1` on *Console B* using *Console B* BIS keys, **UP TO AND INCLUDING, STEP 12. DO NOT ATTEMPT TO BOOT THE CONSOLE YET**.
 1. On the `SYSTEM` partition, delete all the files/folders of the `save` folder **except the one ending in `120`**. Not doing this may end up in the console freezing during boot or Atmosphere showing an error while booting.
 1. Put the latest version of Hekate and Atmosphere on your SD card.
 1. Create the custom Exosphere binary to spoof the DeviceID.
-1. Boot the console using `fusee-primary.bin` or chainload it from Hekate
+1. Boot the console using `fusee-primary.bin` or chainload it from Hekate.
 
 ## How to create the custom Exosphere binary 
 
@@ -47,11 +47,17 @@ After it finishes building, copy the `output/deviceid_exosphere.bin` file to the
 
 ```ini
 [stage2]
-exosphere = atmosphere/deviceid_exosphere.bin
+exosphere = Atmosphere/deviceid_exosphere.bin
 ```
 
-## Important. Do not share your dumps and personalized builds.
-The `deviceid_exosphere.bin` is tied to a specific DeviceID and *must not be shared*. The same applies for the `PRODINFO`/`PRODINFOF` dumps. You may end up with a banned console.
+If booting directly via Hekate, add this to the boot configuration
+```ini
+secmon=Atmosphere/deviceid_exosphere.bin
+```
+
+## Considerations
+- **Important. Do not share your dumps and personalized builds.**. The `deviceid_exosphere.bin` is tied to a specific DeviceID and *must not be shared*. The same applies for the `PRODINFO`/`PRODINFOF` dumps. You may end up with a banned console.
+- Doing this will potentialy leave you with more than one console with the same MAC address. Trying to connect both of them at the same time, to the same wireless network may result in an unexpected behavior.
 
 ## Acknowledgements:
 - **schmue**, **Jan4V** and **SciresM** for all the patience answering questions and all the info about this and the *full nand transplant* options.
