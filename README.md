@@ -38,7 +38,7 @@ Either build the docker image locally or use the prebuilt image from Dockerhub, 
 
 ```bash
 mkdir -p ./output
-docker run -ti --rm -e DEVICEID=0x0000000000000000 -v "$PWD"/output:/output pablozaiden/deviceid-exosphere-builder:0.14.1
+docker run -ti --rm -e DEVICEID=0x0000000000000000 -v "$PWD"/output:/output pablozaiden/deviceid-exosphere-builder:latest
 ```
 
 After the build, copy the `output/deviceid_exosphere.bin` file to the `atmosphere` directory of your SD card, and add the following entries to `BCT.ini`:
