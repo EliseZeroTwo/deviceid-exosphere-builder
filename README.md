@@ -50,7 +50,7 @@ After it finishes building, copy the `output/deviceid_exosphere.bin` file to the
 exosphere = Atmosphere/deviceid_exosphere.bin
 ```
 
-If booting directly via Hekate, add this to the boot configuration
+If booting via Hekate (without `fusee-primary.bin`), add this to the boot configuration to pick up the custom exosphere binary:
 ```ini
 secmon=Atmosphere/deviceid_exosphere.bin
 ```
