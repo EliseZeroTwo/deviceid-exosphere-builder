@@ -60,4 +60,4 @@ secmon=Atmosphere/deviceid_exosphere.bin
 - Doing this will potentialy leave you with more than one console with the same MAC address. Trying to connect both of them at the same time, to the same wireless network may result in an unexpected behavior.
 
 ## Acknowledgements:
-- **schmue**, **Jan4V** and **SciresM** for all the patience answering questions and all the info about this and the *full nand transplant* options.
+- **shchmue**, **Jan4V** and **SciresM** for all the patience answering questions and all the info about this and the *full nand transplant* options.
