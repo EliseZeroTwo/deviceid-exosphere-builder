@@ -20,7 +20,7 @@ Dockerized tool to build a custom Exosphere binary that spoofs the DeviceID. Thi
 
 ### Steps
 1. Open the EMMC from *Console A* or its backup with NxNandManager, using *Console A* BIS keys.
-1. Write down the *DeviceID*, without the initial `NX` and the `-0` (or whatever there is) at the end, skipping the first two digits. For instance, if it says: `NX1122334455667788-0`, your device would be: `22334455667788`.
+1. Write down the *DeviceID*, without the initial `NX` and the `-0` (or whatever there is) at the end, skipping the first two digits. For instance, if it says: `NX1122334455667788-0`, the part you need to write down would be: `22334455667788`.
 1. Dump and decrypt `PRODINFO` and `PRODINFOF` partitions from *Console A*.
 1. Close NxNandManager.
 1. Open the EMMC from *Console B* with NxNandManager, using *Console B* BIS keys. It may say that it has *BAD CRYPTO*. This is expected on a nuked EMMC.
