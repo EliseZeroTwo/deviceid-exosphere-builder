@@ -20,7 +20,7 @@ Dockerized tool to build a custom Exosphere binary that spoofs the DeviceID. Thi
 
 ### Steps
 1. Open the EMMC from *Console A* or its backup with NxNandManager, using *Console A* BIS keys.
-1. Write down the *DeviceID*, without the initial `NX` and the `-0` (or whatever there is) at the end. For instance, if it says: `NX1122334455667788-0`, your device would be: `1122334455667788`.
+1. Write down the *DeviceID*, without the initial `NX` and the `-0` (or whatever there is) at the end, skipping the first two digits. For instance, if it says: `NX1122334455667788-0`, your device would be: `22334455667788`.
 1. Dump and decrypt `PRODINFO` and `PRODINFOF` partitions from *Console A*.
 1. Close NxNandManager.
 1. Open the EMMC from *Console B* with NxNandManager, using *Console B* BIS keys. It may say that it has *BAD CRYPTO*. This is expected on a nuked EMMC.
@@ -36,11 +36,11 @@ Dockerized tool to build a custom Exosphere binary that spoofs the DeviceID. Thi
 
 This tool requires a volume mounted to the `/output` directory of the container, and the `DEVICEID` environment variable, with the DeviceID to spoof.
 
-Either build the docker image locally or use the prebuilt image from Dockerhub, replacing the `DEVICEID` value with your DeviceID:
+Either build the docker image locally or use the prebuilt image from Dockerhub, replacing the `DEVICEID` value with your DeviceID (keep the `00` before your DeviceID. If the output from NxNandManager was `NX1122334455667788-0`, the value to use should be: `0x0022334455667788`. ):
 
 ```bash
 mkdir -p ./output
-docker run -ti --rm -e DEVICEID=0x1122334455667788 -v "$PWD"/output:/output pablozaiden/deviceid-exosphere-builder:latest
+docker run -ti --rm -e DEVICEID=0x0022334455667788 -v "$PWD"/output:/output pablozaiden/deviceid-exosphere-builder:latest
 ```
 
 After it finishes building, copy the `output/deviceid_exosphere.bin` file to the `Atmosphere` directory of your SD card, and add the following entries to `BCT.ini`:
